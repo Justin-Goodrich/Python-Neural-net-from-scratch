@@ -1,4 +1,4 @@
-from Layer import Layer, outputLayer
+from Layer import Layer
 from Network import Network
 import numpy as np
 
@@ -10,9 +10,13 @@ import numpy as np
 # print("\n")
 # print(x.computeOutput(i))
 
-out = outputLayer(1)
-input = Layer(1)
-NN = Network(inputLayer=input, outputLayer=out)
-input.randomizeWeights()
+out = Layer(2)
 
-print(NN.inputLayer.weights)
+
+NN = Network(outputLayer=out, inputNodes=2)
+
+# input.randomizeWeights()
+NN.intializeWeights()
+
+print(NN.outputLayer.weights)
+print(NN.outputLayer.bias)

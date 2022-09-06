@@ -2,15 +2,17 @@ from random import random
 import numpy as np
 
 class Layer:
-
-    def __init__(self,nodes,weights=None,next=None,prev=None):
-        self.weights = weights
+    def __init__(self,nodes, next=None,prev=None):
+        self.weights = None
+        self.bias = None
         self.nodes = nodes
         self.prev = prev
         self.next = next
-        self.output = None
+        self.output = 0
 
     def computeOutput(self, input):
+        # recursive fuction to be called from the input layer only 
+
         self.output = self.weights * input
 
         if self.next is None:
@@ -23,20 +25,39 @@ class Layer:
         self.next = L
 
     
-    def randomizeWeights(self):
+    def randomizeWeights(self, nodes):
         weightmatrix = []
-        for i in range(self.next.nodes):
+        for i in range(nodes):
             row = []
             for j in range(self.nodes):
                 row.append(random())
             weightmatrix.append(row)
         self.weights = np.matrix(weightmatrix)
 
+        if self.next is not None:
+            self.next.randomizeWeights(self.nodes)
 
-class outputLayer(Layer):
-    def computeOutput(self, input):
-        self.output = input
-        return input
+    def intializeBias(self):
+        self.bias = np.matrix([1 for i in range(self.nodes)])
+
+        if self.next is not None:
+            self.next.initializeBias()
+
+
+# class outputLayer(Layer):
+#     def computeOutput(self, input):
+#         self.output = input
+#         return input
+
+#     def randomizeWeights(self, inputNodes):
+#         # needed to end the recursive loop 
+#         return 
+
+#     def intiializeBias(self):
+#         return 
+
+    
+
 
 
 
