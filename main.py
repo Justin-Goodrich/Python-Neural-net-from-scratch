@@ -2,21 +2,23 @@ from Layer import Layer
 from Network import Network
 import numpy as np
 
-# i = np.matrix([[0],[1]])
-# x = Layer(2)
-# x.addLayer(outputLayer(2))
-# x.randomizeWeights()
-# print(x.weights.getA())
-# print("\n")
-# print(x.computeOutput(i))
+# nummpy automatically applies the function elementwise
+def sigmoid(z):
+    return 1.0/(1.0+np.exp(-z))
 
-out = Layer(2)
+def sigmoidPrime(z):
+    return sigmoid(z)*(1-sigmoid(z))
 
+out = Layer(2, activation=sigmoid, activationDerivative=sigmoidPrime)
+
+input = np.matrix([[1],[0]])
 
 NN = Network(outputLayer=out, inputNodes=2)
 
-# input.randomizeWeights()
 NN.intializeWeights()
+print(NN.outputLayer.weights + NN.outputLayer.bias)
 
-print(NN.outputLayer.weights)
+print(NN.forwardPropagate(input))
+
+
 print(NN.outputLayer.bias)

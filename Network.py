@@ -3,7 +3,6 @@ from Layer import Layer
 
 class Network:
 
-    #each network shouldbe required to have one input and output layer
     def __init__(self, outputLayer,inputNodes=0):
         self.firstLayer = outputLayer
         self.inputNodes = inputNodes
@@ -14,5 +13,5 @@ class Network:
         self.firstLayer.randomizeWeights(self.inputNodes)
         self.firstLayer.intializeBias()
 
-
-    
+    def forwardPropagate(self,input):
+        return self.firstLayer.computeOutput(input)

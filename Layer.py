@@ -2,19 +2,29 @@ from random import random
 import numpy as np
 
 class Layer:
-    def __init__(self,nodes, next=None,prev=None):
+    def __init__(self,nodes, activation, activationDerivative, next=None, prev=None):
+     
+
         self.weights = None
         self.bias = None
         self.nodes = nodes
-        self.prev = prev
-        self.next = next
         self.output = 0
+
+        self.activation = activation
+        self.activationDerivative = activationDerivative
+           
+        self.next = next
+        self.prev = prev
+
+      
+
 
     def computeOutput(self, input):
         # recursive fuction to be called from the input layer only 
 
         self.output = self.weights * input
-
+        self.output = self.output + self.bias
+        self.output = self.activation(self.output)
         if self.next is None:
             return self.output
         
