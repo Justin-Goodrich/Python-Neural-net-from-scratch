@@ -11,7 +11,7 @@ the output (z) of a nueron can be represented as such, where X is the input vect
 $$\sum_{i}^{n}x_iw_i+b_i$$
 
 This summimation can be more simply represented for all nuerons in a layer as a matrix multiplication
-<br/>$z_l = X_lW_l$
+<br/>$$z_l = X_lW_l$$
 
 once the weighted sume has been computed, the its fed into an activation function to add a nonlinear effect to the networks output. A few common activation functions include: ReLu, tanh, and sigmoid. 
 
