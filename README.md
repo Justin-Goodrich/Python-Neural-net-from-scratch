@@ -9,3 +9,8 @@ A basic feed-forward Nueral network is comprised of just nodes, sometimes refere
 
 the output of a nueron can be represented as such, where x is the input, w is the weight and b is an optional bias node: 
 $$\sum_{i}^{n}x_iw_i+b_i$$
+
+This summimation can be more simply represented for all nuerons in a layer as a matrix multiplication
+<br/>$O^l = X^lw^l$
+
+
