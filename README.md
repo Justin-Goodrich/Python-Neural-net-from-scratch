@@ -5,8 +5,10 @@ I'm also going to be explaining some of the concepts on here to further develeop
 
 ## How it Works
 
+### Forward Propagation 
 A basic feed-forward Nueral network is comprised of just nodes, sometimes refered to as nuerons, and weights. They also consist of an input layer, an output layer, and a number of hidden layers. The networks weights connect input nodes to the nuerons on the next layer, each input node having its own connection to each neruon. 
 
+<img style="height:400px" src="https://user-images.githubusercontent.com/106884609/191625252-3e7dae53-37f7-4e1d-8842-8cad55164548.png" />
 the output (z) of a nueron can be represented as such, where X is the input vector, W is the weight matrix and b is an optional bias: 
 $$\sum_{i}^{n}x_iw_i+b_i$$
 
@@ -21,7 +23,7 @@ $$\sigma (x) = \frac{1}{1+e^-x}$$
 
 $$a_l = \sigma(z_l)$$
 
-
+### Backpropagation, how the neetwork learns
 
 
 
