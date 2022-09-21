@@ -29,7 +29,7 @@ Nueral networks use a technique called gradient descent to minimize a cost funct
 $$C = \frac{1}{2}(\hat{y} - a)$$
 
 
-Gradient descent is the practice of adjusting weights in small steps in order to find the minimum of the cost function. This is done by computing the gradient $\frac{\partial{C}}{\partial{w}}$
+Gradient descent is the practice of adjusting weights in small steps in order to find the minimum of the cost function. This is done by computing $\frac{\partial{C}}{\partial{w}}$, multiplying it by some learning rate, $\alpha$ and subtracting it from the weights value $w$ 
 
 To compute this gradient we simply use the chain rule. 
 
