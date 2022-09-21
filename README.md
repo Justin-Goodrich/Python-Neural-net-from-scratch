@@ -25,7 +25,13 @@ $$a_l = \sigma(z_l)$$
 
 ### Backpropagation, how the neetwork learns
 
+Nueral networks use a technique called gradient descent to minimize a cost function. In this case its th squared error of the output (the expected output, $\hat{y}$ minus the actual output $a$, squared (the 1/2 is just for simpler derivation)
+$$C = \frac{1}{2}(\hat{y} - a)$$
 
+
+Gradient descent is the practice of adjusting weights in small steps in order to find the minimum of the cost function. This is done by computing the gradient $\frac{\partial{C}}{\partial{w}$
+
+To compute this gradient we simply use the chain rule. 
 
 
 
