@@ -1,46 +1,82 @@
-from Layer import Layer
+from utils.TrainingExample import TrainingExample
+import numpy as np
+from utils.costFunctions import squaredError, squaredErrorPrime
+from utils.activationFunctions import sigmoid, sigmoidPrime
 
-
-class Network:
-
-    def __init__(self, outputLayer, cost, costDerivative, learningRate, inputNodes=0):
-        self.firstLayer = outputLayer
-        self.inputNodes = inputNodes
-        self.outputLayer = outputLayer
-        self.loss = None
-        self.cost = cost
-        self.costDerivative = costDerivative
+class Network :
+    def __init__(self,learningRate, inputNodes, activation, activationDerivative,costFunction,costDerivative) -> None:
+        self.layers = []
+        self.bias = []
+        self.activations = []
         self.learningRate = learningRate
+        self.inputNodes = inputNodes
+        self.activation = activation
+        self.activationDerivative = activationDerivative
+        self.costFunction = costFunction
+        self.costDerivative = costDerivative
 
-    def addLayer(self,newLayer):
-        newLayer.next = self.firstLayer
-        self.firstLayer.prev = newLayer
-        self.firstLayer = newLayer
+    def addLayer(self, nodes):
+        if len(self.layers) == 0:
+            self.layers.append(np.random.rand(nodes,self.inputNodes)+1)
+        else:
+            prev = self.layers[-1].shape[0]
+            self.layers.append(np.random.rand(nodes,prev)+1)
+   
+        self.bias.append(np.random.rand(1,1))
 
-    def intializeWeights(self):
-        self.firstLayer.randomizeWeights(self.inputNodes)
-        # self.firstLayer.intializeBias()
+        
+
 
     def forwardPropagate(self,input):
-        return self.firstLayer.computeOutput(input)
+        biasIndex = 0
+        for W in self.layers:
+            weightedOutput = np.matmul(W,input)  
+            input = self.activation(weightedOutput)
+            biasIndex+=1
+        return input
 
-    def train(self, examples):
-        for i in examples:
-            actual = self.forwardPropagate(i.input)
-            layer = self.outputLayer
+    def backPropagate(self, input, costGradient):
+        outputs = []
         
-            while layer is not None:
-                if layer.next is None:
-                    layer.computeError(self.costDerivative(actual,i.expected)) 
-                else: 
-                    layer.computeError()
-                
-                if layer.prev is None:
-                    layer.adjustWeights(self.learningRate, i.input)
-                else:
-                    layer.adjustWeights(self.learningRate)
-                layer = layer.prev
+        activation = input
+        activations = [input]
 
-                
+        
+        for W in self.layers:
+            weightedOutput = np.dot(W,activation)
+            outputs.append(weightedOutput)
+            activation = self.activation(weightedOutput)
+            activations.append(activation)
 
-                    
+        
+        error = np.multiply(costGradient,self.activationDerivative(outputs[-1]))
+        nabla_w = []
+        for i in range(1,len(self.layers)+1):
+            w = self.layers[-i]
+            delta_w = np.dot(error,activations[-i-1].transpose())
+            nabla_w.append(delta_w)
+            self.layers[-i] = self.layers[-i] - (self.learningRate * delta_w)
+            if i < len(self.layers): 
+                error = np.multiply(np.dot(w.transpose(),error), self.activationDerivative(outputs[-i-1]))
+
+
+
+
+
+    def fit(self, trainingData, epochs):
+        for e in range(epochs):
+            for i in trainingData:
+                actual = self.forwardPropagate(i.input)
+                costGradient = self.costDerivative(actual,i.expected)
+                self.backPropagate(i.input,costGradient)
+
+
+            
+
+
+      
+        
+
+
+
+
