@@ -17,9 +17,9 @@ once the weighted sume has been computed, the its fed into an activation functio
 
 During the beginning of this project, I have been exclusively working with the sigmoid function as my activation function, especially for my XOR gate implementation
 <br/>
-$\sigma (x) = \frac{1}{1+e^-x}$
+$$\sigma (x) = \frac{1}{1+e^-x}$$
 
-$A_l = \sigma(z_l)$
+$$a_l = \sigma(z_l)$$
 
 
 
