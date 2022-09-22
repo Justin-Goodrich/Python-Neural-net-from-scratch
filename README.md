@@ -39,7 +39,7 @@ of course, this can be represented in matrix form using a dot product (elementwi
 $$\delta^L = \nabla_aC \cdot \sigma'(z^L)$$
 
 note that this formula only applies for the output layer, for the rest of the layers we must compute delta using the following formula:
-$$\delta^l = ((w^{l+1})^T\delta^{l+1} \cdot sigma'(z^l)$$
+$$\delta^l = ((w^{l+1})^T\delta^{l+1} \cdot \sigma'(z^l)$$
 
 from this we can compute the gradient for both the weights and biases. 
 for the biases the gradient is simply: $$\frac{\partial{C}}{b^l_j} = \delta$$
