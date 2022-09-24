@@ -17,10 +17,15 @@ class Network :
 
     def addLayer(self, nodes):
         if len(self.layers) == 0:
-            self.layers.append(np.random.rand(nodes,self.inputNodes)+1)
+            # self.layers.append(np.random.rand(nodes,self.inputNodes)+1)
+            self.layers.append(np.random.rand(nodes,self.inputNodes))
+
         else:
             prev = self.layers[-1].shape[0]
-            self.layers.append(np.random.rand(nodes,prev)+1)
+            # self.layers.append(np.random.rand(nodes,prev)+1)
+            self.layers.append(np.random.rand(nodes,prev))
+
+            
    
         self.bias.append(np.random.rand(1,1))
 
@@ -31,6 +36,7 @@ class Network :
         biasIndex = 0
         for W in self.layers:
             weightedOutput = np.matmul(W,input)  
+            # weightedOutput = np.dot(input,W)  
             input = self.activation(weightedOutput)
             biasIndex+=1
         return input
@@ -44,6 +50,7 @@ class Network :
         
         for W in self.layers:
             weightedOutput = np.dot(W,activation)
+            # weightedOutput = np.dot(input,W) 
             outputs.append(weightedOutput)
             activation = self.activation(weightedOutput)
             activations.append(activation)

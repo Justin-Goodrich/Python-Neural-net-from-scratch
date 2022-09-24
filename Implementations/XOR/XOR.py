@@ -1,7 +1,6 @@
 import sys
 # path must be changed to locate modules outside of directory
 sys.path.append("../../")
-
 from Network import Network
 from utils.TrainingExample import TrainingExample
 from utils.costFunctions import squaredError, squaredErrorPrime
