@@ -18,8 +18,8 @@ examples = [
 if __name__ == "__main__":
 
     N = Network(.5,2,activation=sigmoid,activationDerivative=sigmoidPrime,costFunction=squaredError,costDerivative=squaredErrorPrime)
-    N.addLayer(2)
-    N.addLayer(1)
+    N.addLayer(2,sigmoid,sigmoidPrime)
+    N.addLayer(1,sigmoid,sigmoidPrime)
 
     print("before training predicitons: ")
     for i in examples:
