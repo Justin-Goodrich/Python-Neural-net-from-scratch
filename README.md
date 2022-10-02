@@ -53,7 +53,7 @@ $$W = W - \alpha(\delta)$$
 
 # Implementations
 ## XOR Gate
-My first implementation was a model that predicts the output of an xor gate, for this I used a 2-2-1 structure using squared error as my cost function and sigmoid functions for every node. The script to run that implementation can be found [here](/implementations/XOR/XOR.py)
+My first implementation was a model that predicts the output of an xor gate, for this I used a 2-2-1 structure using squared error as my cost function and sigmoid functions for every node. The script to run that implementation can be found [here](/implementations/XOR/XOR.py).
 
 ## Classifying Handwritten Digits
-This implementation classifies handwritten digits from the well-known, MNIST dataset. It simply flattens the image matrix and feeds it into the network, which contains two hidden layers. The structure is 728 (flattened pixel matrix) - 128 - 64 - 10 (output vector). The input layer as well as all of the hidden layers utilize the sigmoid activation function, but the output layer uses the softmax activation function to show output in terms of probabilities. 
+This implementation classifies handwritten digits from the well-known, MNIST dataset. It simply flattens the image matrix and feeds it into the network, which contains two hidden layers. The structure is 728 (flattened pixel matrix) - 128 - 64 - 10 (output vector). The input layer as well as all of the hidden layers utilize the sigmoid activation function, but the output layer uses the softmax activation function to show output in terms of probabilities. The MNIST implmentation script can be found  [here](/implementations/MNIST_digits/mnist.py).
